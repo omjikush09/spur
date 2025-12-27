@@ -45,7 +45,7 @@ function ChatBox({
 					onKeyDown={handleKeyPress}
 					onChange={(e) => setTextAreaValue(e.target.value)}
 					className="w-full min-h-[120px] bg-transparent text-neutral-100 placeholder:text-neutral-500 p-5 pr-14 rounded-3xl resize-none focus:outline-none focus:ring-0 text-base leading-relaxed scrollbar-hide"
-					placeholder={placeholder || "Ask me to build ..."}
+					placeholder={placeholder || "Ask me question related to Spur ..."}
 					spellCheck={false}
 				/>
 				

@@ -40,7 +40,7 @@ export default function Home() {
 
 					<div className="inline-block max-w-full overflow-ellipsis select-none text-stone-300 text-4xl">
 						<div>{projectState.isLoading && <Loading />}</div>
-						What should we build today?
+						Ask me your queries related to Spur
 					</div>
 
 					{/* Chat input */}
