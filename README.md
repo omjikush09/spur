@@ -2,6 +2,8 @@
 
 This project is a monorepo containing a **frontend** (Next.js) and a **backend** (Express/Node.js). Follow the instructions below to set up and run the application locally.
 
+### Video Link-- https://drive.google.com/file/d/1p9C3MUVjig3vTDVrF0XBa6CIkYfU1q7_/view?usp=sharing
+
 ## Prerequisites
 
 - Node.js (Latest LTS recommended)
