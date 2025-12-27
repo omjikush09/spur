@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const message_controller_1 = require("./message.controller");
+const message_schema_1 = require("./message.schema");
+const validateRequest_1 = require("../../middleware/validateRequest");
+const router = (0, express_1.Router)();
+router.post("/", (0, validateRequest_1.validateRequest)(message_schema_1.createMessageSchema), message_controller_1.createMessageController);
+router.post("/generate-text", message_controller_1.generateTextController);
+exports.default = router;
