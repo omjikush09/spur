@@ -88,3 +88,32 @@ The frontend is a Next.js application.
 To run the full application, you will need two terminal windows:
 1.  One running the **Backend** (`cd backend && pnpm dev`)
 2.  One running the **Frontend** (`cd frontend && pnpm dev`)
+
+## Short Architecture Overview
+
+### Backend Structure
+The backend follows a **modular, feature-based architecture** located in `src/modules/`. Each feature (e.g., `chat`, `message`) is self-contained with its own:
+-   **Routes (`*.route.ts`)**: Defines the API endpoints.
+-   **Controllers (`*.controller.ts`)**: Handles HTTP requests and Zod schema validation.
+-   **Services (`*.service.ts`)**: Contains business logic, database interactions (Prisma), and AI integration.
+-   **Schemas (`*.schema.ts`)**: Zod definitions for input validation.
+
+### Interesting Design Decisions
+-   **Streaming First**: The message generation (`generateTextService`) uses the Vercel AI SDK's `pipeUIMessageStreamToResponse` to stream tokens directly to the client, providing a responsive "typing" effect.
+-   **Monorepo-style**: Both frontend and backend share the same repository structure for easier development context switching.
+-   **Zod Everywhere**: We use Zod not just for validation but for inferring TypeScript types, ensuring type safety from the API input to the service layer.
+
+## LLM Notes
+
+### Provider
+-   **OpenAI** via the **Vercel AI SDK** (`@ai-sdk/openai`).
+-   The implementation uses `streamText` for efficient, real-time responses.
+
+### Prompting Strategy
+-   **System Prompt**: Defined in `src/utils/prompt.ts`, the prompt sets the persona as a "friendly and knowledgeable customer support agent for Spur".
+-   **Context Awareness**: The `convertToModelMessages` utility is used to transform the chat history into a format the model understands, allowing it to maintain context over multiple turns.
+
+### Trade-offs & "If I had more time..."
+-   **RAG Integration**: Currently, the bot relies on general knowledge and the system prompt. With more time, I would implement **RAG (Retrieval-Augmented Generation)** using a vector database to allow the AI to answer specific questions about real-time inventory, shipping policies, or specific order statuses.
+-   **Model Configuration**: The model is currently set to `gpt-5.2` (a placeholder/experimental version). A production-ready version would likely stick to `gpt-4o` or `gpt-3.5-turbo` for cost optimization.
+-   **Tool Calling**: I would add **Function Calling** capabilities so the agent could perform actions like "Check Order Status" or "Process Refund" directly against the database.
