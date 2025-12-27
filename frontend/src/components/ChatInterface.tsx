@@ -76,7 +76,7 @@ export function ChatInterface({
 		<div className="flex flex-col h-full w-full bg-background relative overflow-hidden">
 			{/* Chat Messages Area */}
 			<div
-				className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent p-4 md:p-8"
+				className="flex-1 overflow-y-auto p-4 md:p-8"
 				ref={messagesContainerRef}
 			>
 				<div className="max-w-4xl mx-auto w-full space-y-4 pb-4">

@@ -30,7 +30,7 @@ export const createMessageService = async (
 	}
 };
 
-const MAX_TOEKN_ALLOWED = 20000;
+const MAX_TOEKN_ALLOWED = 2000;
 
 export const generateTextService = async (
 	messages: UIMessage[],
@@ -45,6 +45,7 @@ export const generateTextService = async (
 		const textStream = streamText({
 			model: openai("gpt-5.2"),
 			system: systemPrompt,
+			maxOutputTokens: MAX_TOEKN_ALLOWED,
 			messages: await convertToModelMessages(messages),
 			maxRetries: 0,
 		});
