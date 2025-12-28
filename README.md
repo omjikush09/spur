@@ -48,13 +48,19 @@ The backend handles the API and database interactions.
         - `PORT`: Port to run the server on (default: `8000`).
         - `OPENAI_API_KEY`: Your OpenAI API key.
 
-4.  **Run Database Migrations:**
+4.  **Generate Prisma Client:**
+    ```bash
+    pnpm db:generate
+    ```
+    This ensures the Prisma client types are generated for your local environment.
+
+5.  **Run Database Migrations:**
     ```bash
     pnpm db:migrate
     ```
     This will apply the Prisma schema changes to your local database.
 
-5.  **Start the development server:**
+6.  **Start the development server:**
     ```bash
     pnpm dev
     ```
